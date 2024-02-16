@@ -7,11 +7,11 @@ import nassing.togetherwefall.repositories.BuildingRepository;
 
 @Service
 public class BuildingService {
-    private final BuildingRepository BuildingRepository;
+    private final BuildingRepository buildingRepository;
 
     @Autowired
-    public BuildingService(BuildingRepository BuildingRepository) {
-        this.BuildingRepository = BuildingRepository;
+    public BuildingService(BuildingRepository buildingRepository) {
+        this.buildingRepository = buildingRepository;
     }
 
     // Méthodes pour gérer les joueurs

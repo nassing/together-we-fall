@@ -7,11 +7,11 @@ import nassing.togetherwefall.repositories.ItemRepository;
 
 @Service
 public class ItemService {
-    private final ItemRepository ItemRepository;
+    private final ItemRepository itemRepository;
 
     @Autowired
-    public ItemService(ItemRepository ItemRepository) {
-        this.ItemRepository = ItemRepository;
+    public ItemService(ItemRepository itemRepository) {
+        this.itemRepository = itemRepository;
     }
 
     // Méthodes pour gérer les joueurs

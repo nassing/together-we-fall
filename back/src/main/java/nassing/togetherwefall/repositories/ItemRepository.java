@@ -1,8 +1,10 @@
 package nassing.togetherwefall.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import nassing.togetherwefall.entities.Item;
 
-public interface ItemRepository extends CrudRepository<Item, String> {
+@Repository
+public interface ItemRepository extends JpaRepository<Item, String> {
 }

@@ -7,12 +7,11 @@ import nassing.togetherwefall.repositories.InventoryRepository;
 
 @Service
 public class InventoryService {
-    private final InventoryRepository InventoryRepository;
+    private final InventoryRepository inventoryRepository;
 
     @Autowired
-    public InventoryService(InventoryRepository InventoryRepository) {
-        this.InventoryRepository = InventoryRepository;
+    public InventoryService(InventoryRepository inventoryRepository) {
+        this.inventoryRepository = inventoryRepository;
     }
 
-    // Méthodes pour gérer les joueurs
 }

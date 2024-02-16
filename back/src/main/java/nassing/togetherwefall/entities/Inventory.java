@@ -1,20 +1,34 @@
 package nassing.togetherwefall.entities;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@RedisHash("Inventory")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Inventory {
     @Id
-    private String id;
-    private List<String> objectIds;  
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @OneToOne
+    private Survivor survivor;
+
+    @OneToOne
+    private Building building;
+
+    @OneToMany(mappedBy = "inventory")
+    private List<Item> items = new ArrayList<>();
 }

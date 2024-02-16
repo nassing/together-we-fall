@@ -1,31 +1,30 @@
 package nassing.togetherwefall.entities;
 
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Player {
+public class Survivor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
+    
+    @ManyToOne
+    private Player player;
 
-    @OneToMany(mappedBy = "player")
-    private List<Survivor> survivors = new ArrayList<>();
-
-    @OneToMany(mappedBy = "player")
-    private List<Building> buildings = new ArrayList<>();
+    @OneToOne
+    private Inventory inventory;
 }

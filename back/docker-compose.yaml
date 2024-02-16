@@ -6,7 +6,13 @@ services:
       - 'RABBITMQ_DEFAULT_USER=myuser'
     ports:
       - '5672'
-  redis:
-    image: 'redis:latest'
+  mariadb:
+    image: 'mariadb:latest'
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_DATABASE=twf
+    command: --init-file /data/application/initdb.sql
+    volumes:
+      - ./initdb.sql:/data/application/initdb.sql
     ports:
-      - '6379'
+      - "3306:3306"

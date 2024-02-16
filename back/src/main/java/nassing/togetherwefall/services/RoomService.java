@@ -7,11 +7,11 @@ import nassing.togetherwefall.repositories.RoomRepository;
 
 @Service
 public class RoomService {
-    private final RoomRepository RoomRepository;
+    private final RoomRepository roomRepository;
 
     @Autowired
-    public RoomService(RoomRepository RoomRepository) {
-        this.RoomRepository = RoomRepository;
+    public RoomService(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
     }
 
     // Méthodes pour gérer les joueurs
