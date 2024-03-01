@@ -10,13 +10,8 @@ import jakarta.persistence.GenerationType;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import nassing.togetherwefall.entities.items.AItem;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Inventory {
     @Id
@@ -30,5 +25,36 @@ public class Inventory {
     private Building building;
 
     @OneToMany(mappedBy = "inventory")
-    private List<Item> items = new ArrayList<>();
+    private List<AItem> items = new ArrayList<>();
+
+    public Inventory() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public Survivor getSurvivor() {
+        return survivor;
+    }
+
+    public void setSurvivor(Survivor survivor) {
+        this.survivor = survivor;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
+    }
+
+    public List<AItem> getItems() {
+        return items;
+    }
+
+    public void addItem(AItem item) {
+        items.add(item);
+    }
 }

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import nassing.togetherwefall.entities.Inventory;
-import nassing.togetherwefall.entities.Player;
+import nassing.togetherwefall.entities.player.Player;
 import nassing.togetherwefall.entities.Survivor;
 import nassing.togetherwefall.repositories.SurvivorRepository;
 import nassing.togetherwefall.repositories.InventoryRepository;

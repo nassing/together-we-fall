@@ -1,0 +1,57 @@
+@startuml
+
+class Player {
+}
+
+class PlayerAccount {
+}
+
+class Building {
+    int roomAmount
+}
+
+class Room {
+}
+
+class Inventory {
+}
+
+class Survivor {
+}
+
+abstract class Item {
+}
+
+class Game {
+}
+
+class Map {
+}
+
+class ChannelMessage {
+}
+
+class Channel {
+}
+
+class MapTile {
+    int x
+    int y
+}
+
+Player "*" -- PlayerAccount
+Player -- "*" Building
+Building -- Inventory
+Inventory -- "*" Item
+Player -- "*" Survivor
+Building -- "*" Room
+Survivor -- Inventory
+Game -- Map
+Game -- "*" Player
+Map -- "*" MapTile
+Building -- MapTile
+Channel -- "*" ChannelMessage
+Player -- ChannelMessage
+Game -- "*" Channel
+
+@enduml
