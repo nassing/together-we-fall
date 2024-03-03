@@ -1,7 +1,7 @@
 package nassing.togetherwefall.entities.channels;
 
 import jakarta.persistence.*;
-import nassing.togetherwefall.entities.game.Game;
+import nassing.togetherwefall.entities.game.Server;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ public class Channel {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "gameId")
-    private Game game;
+    @JoinColumn(name = "serverId")
+    private Server server;
 
     @OneToMany(mappedBy = "channel")
     private List<ChannelMessage> messages;

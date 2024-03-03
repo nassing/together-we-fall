@@ -2,7 +2,7 @@ package nassing.togetherwefall.entities.player;
 
 import jakarta.persistence.*;
 import nassing.togetherwefall.entities.Building;
-import nassing.togetherwefall.entities.game.Game;
+import nassing.togetherwefall.entities.game.Server;
 import nassing.togetherwefall.entities.Survivor;
 
 
@@ -26,7 +26,7 @@ public class Player {
     private PlayerAccount playerAccount;
 
     @ManyToOne
-    private Game game;
+    private Server server;
 
     public Player() {
     }
@@ -71,11 +71,11 @@ public class Player {
         this.playerAccount = playerAccount;
     }
 
-    public Game getGame() {
-        return game;
+    public Server getServer() {
+        return server;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    public void setServer(Server server) {
+        this.server = server;
     }
 }

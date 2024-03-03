@@ -8,8 +8,6 @@ export default function Navbar() {
 
     const navigate = useNavigate();
 
-    const apiUrl = import.meta.env.VITE_API_URL;
-
     const handleUsernameFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsernameField(event.target.value);
     }
@@ -33,6 +31,7 @@ export default function Navbar() {
         };
 
         try {
+            const apiUrl = import.meta.env.VITE_API_URL;
             const response = await fetch(apiUrl + '/login', requestOptions);
             const json = await response.json();
             if(json.success) {

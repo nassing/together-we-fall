@@ -7,21 +7,21 @@ import nassing.togetherwefall.entities.player.Player;
 import java.util.List;
 
 @Entity
-public class Game {
+public class Server {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany(mappedBy = "game")
+    @OneToMany(mappedBy = "server")
     private List<Channel> channels;
 
-    @OneToMany(mappedBy = "game")
+    @OneToMany(mappedBy = "server")
     private List<Player> players;
 
     @OneToOne
     private ActionQueue actionQueue;
 
-    public Game() {
+    public Server() {
     }
 
     public long getId() {

@@ -11,7 +11,7 @@ public class ActionQueue {
     private long id;
 
     @OneToOne
-    private Game game;
+    private Server server;
 
     @OneToMany
     private List<Action> queuedActions;
@@ -23,12 +23,12 @@ public class ActionQueue {
         return id;
     }
 
-    public Game getGame() {
-        return game;
+    public Server getServer() {
+        return server;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    public void setGame(Server server) {
+        this.server = server;
     }
 
     public List<Action> getQueuedActions() {
