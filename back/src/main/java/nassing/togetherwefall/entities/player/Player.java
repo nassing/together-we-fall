@@ -2,6 +2,7 @@ package nassing.togetherwefall.entities.player;
 
 import jakarta.persistence.*;
 import nassing.togetherwefall.entities.Building;
+import nassing.togetherwefall.entities.game.Game;
 import nassing.togetherwefall.entities.Survivor;
 
 
@@ -21,8 +22,11 @@ public class Player {
     @OneToMany(mappedBy = "player")
     private List<Building> buildings = new ArrayList<>();
 
-    @OneToOne
+    @ManyToOne
     private PlayerAccount playerAccount;
+
+    @ManyToOne
+    private Game game;
 
     public Player() {
     }
@@ -67,5 +71,11 @@ public class Player {
         this.playerAccount = playerAccount;
     }
 
+    public Game getGame() {
+        return game;
+    }
 
+    public void setGame(Game game) {
+        this.game = game;
+    }
 }

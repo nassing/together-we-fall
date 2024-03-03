@@ -1,7 +1,7 @@
 package nassing.togetherwefall.entities.channels;
 
 import jakarta.persistence.*;
-import nassing.togetherwefall.entities.Game;
+import nassing.togetherwefall.entities.game.Game;
 
 import java.util.List;
 

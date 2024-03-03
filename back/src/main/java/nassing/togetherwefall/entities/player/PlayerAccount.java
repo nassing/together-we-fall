@@ -1,9 +1,8 @@
 package nassing.togetherwefall.entities.player;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class PlayerAccount {
@@ -11,14 +10,17 @@ public class PlayerAccount {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String username;
-    private String passwordHash;
+    private String password;
+
+    @OneToMany(mappedBy = "playerAccount")
+    private List<Player> players;
 
     public PlayerAccount() {
     }
 
-    public PlayerAccount(String username, String passwordHash) {
+    public PlayerAccount(String username, String password) {
         this.username = username;
-        this.passwordHash = passwordHash;
+        this.password = password;
     }
 
     public long getId() {
@@ -29,15 +31,27 @@ public class PlayerAccount {
         return username;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public void addPlayer(Player player) {
+        players.add(player);
     }
 }

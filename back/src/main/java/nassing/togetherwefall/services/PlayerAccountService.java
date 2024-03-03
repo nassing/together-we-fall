@@ -16,14 +16,19 @@ public class PlayerAccountService {
     }
 
     @Transactional
-    public void createPlayerAccount(String name, String password) {
+    public void createPlayerAccount(String username, String password) {
         PlayerAccount playerAccount = new PlayerAccount();
-        playerAccount.setName(name);
+        playerAccount.setUsername(username);
         playerAccount.setPassword(password);
         playerAccountRepository.save(playerAccount);
     }
 
-    public PlayerAccount findPlayerAccount(String name) {
-        return playerAccountRepository.findByName(name).orElseThrow(() -> new IllegalStateException("PlayerAccount with name " + name + " does not exist"));
+    @Transactional
+    public void deletePlayerAccount(String username, String password) {
+        playerAccountRepository.deleteByUsernameAndPassword(username, password);
+    }
+
+    public boolean checkPlayerAccount(String username, String password) {
+        return playerAccountRepository.existsByUsernameAndPassword(username, password);
     }
 }

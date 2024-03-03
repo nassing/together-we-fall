@@ -1,17 +1,18 @@
 package nassing.togetherwefall.controllers;
 
-import nassing.togetherwefall.entities.Game;
+import nassing.togetherwefall.entities.game.Game;
+import nassing.togetherwefall.entities.player.Player;
 import nassing.togetherwefall.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
+import java.util.List;
 
 @RestController
 @RequestMapping("/games")
 public class GameController {
+
     private final GameService gameService;
 
     @Autowired
@@ -20,18 +21,26 @@ public class GameController {
     }
 
     @PostMapping
-    public ResponseEntity<Game> createGame(@RequestBody Map<String, Object> requestData) {
+    public ResponseEntity<Game> createGame() {
+        Game newGame = gameService.createGame();
+        return ResponseEntity.ok(newGame);
+    }
+
+    @DeleteMapping("/{gameId}")
+    public ResponseEntity<Void> deleteGame(@PathVariable long gameId) {
+        gameService.deleteGame(gameId);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping
-    public ResponseEntity<Game> getGame(@PathVariable long gameId) {
+    public ResponseEntity<List<Game>> getAllGames() {
+        List<Game> games = gameService.getGames();
+        return ResponseEntity.ok(games);
     }
 
-    @GetMapping
-    public ResponseEntity<Game> getGames() {
-    }
-
-    @DeleteMapping
-    public ResponseEntity<Game> deleteGame(@PathVariable long gameId) {
+    @PostMapping("/{gameId}/join/{playerAccountId}")
+    public ResponseEntity<Player> joinGame(@PathVariable long gameId, @PathVariable long playerAccountId) {
+        Player player = gameService.joinGame(gameId, playerAccountId);
+        return ResponseEntity.ok(player);
     }
 }

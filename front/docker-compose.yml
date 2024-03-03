@@ -1,15 +1,9 @@
 version: "3.4"
 services:
  twf:
-   image: node:alpine
-   container_name: together_we_fall
+   container_name: twf-front
    restart: unless-stopped
-   entrypoint: /bin/sh
+   build: .
    ports:
      - 2401:2401
-   working_dir: /srv/app
-   volumes:
-     - type: bind
-       source: ./
-       target: /srv/app
-   tty: true
+   command: ["npm", "run", "dev"]
