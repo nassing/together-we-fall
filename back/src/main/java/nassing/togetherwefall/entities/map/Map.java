@@ -1,26 +1,23 @@
 package nassing.togetherwefall.entities.map;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(schema = "twf", name = "map")
 public class Map {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "id")
+    private UUID id;
 
     @OneToMany
     private List<MapTile> mapTiles;
-
-    public Map() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 }

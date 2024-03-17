@@ -1,36 +1,27 @@
 package nassing.togetherwefall.entities.map;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public abstract class MapTile {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "id")
+    private UUID id;
 
+    @Column(name = "x")
     private int x;
+
+    @Column(name = "y")
     private int y;
-
-    public MapTile() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public int[] getCoordinates() {
-        return new int[]{x, y};
-    }
-
-    public void setCoordinates(Integer x, Integer y) {
-        if(x != null) this.x = x;
-        if(y != null) this.y = y;
-    }
 }

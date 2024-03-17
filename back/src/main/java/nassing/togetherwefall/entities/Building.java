@@ -1,102 +1,45 @@
 package nassing.togetherwefall.entities;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import nassing.togetherwefall.entities.player.Player;
 import nassing.togetherwefall.entities.rooms.AbstractRoom;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(schema = "twf", name = "building")
 public class Building {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "id")
+    private UUID id;
+
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "food")
     private int food;
+
+    @Column(name = "materials")
     private int materials;
+
+    @Column(name = "spare_parts")
     private int spareParts;
 
+    @Column(name = "rooms_count")
     private int roomsCount;
-    
+
     @ManyToOne
     private Player player;
 
     @OneToMany(mappedBy = "building")
     private List<AbstractRoom> rooms = new ArrayList<>();
-
-    public Building() {
-    }
-
-    public Building(String name) {
-        this.name = name;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getFood() {
-        return food;
-    }
-
-    public int getMaterials() {
-        return materials;
-    }
-
-    public int getSpareParts() {
-        return spareParts;
-    }
-
-    public int getRoomsCount() {
-        return roomsCount;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public List<AbstractRoom> getRooms() {
-        return rooms;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setFood(int food) {
-        this.food = food;
-    }
-
-    public void setMaterials(int materials) {
-        this.materials = materials;
-    }
-
-    public void setSpareParts(int spareParts) {
-        this.spareParts = spareParts;
-    }
-
-    public void setRoomsCount(int roomsCount) {
-        this.roomsCount = roomsCount;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public void setRooms(List<AbstractRoom> rooms) {
-        this.rooms = rooms;
-    }
 }

@@ -1,16 +1,27 @@
 package nassing.togetherwefall.entities.channels;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import nassing.togetherwefall.entities.player.Player;
 
+import java.util.UUID;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(schema = "twf", name = "channel_message")
 public class ChannelMessage {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "id")
+    private UUID id;
 
+    @Column(name = "message")
     private String message;
 
+    @Column(name = "timestamp")
     private String timestamp;
 
     @ManyToOne
@@ -20,53 +31,4 @@ public class ChannelMessage {
     @OneToOne
     @JoinColumn(name = "playerId")
     private Player sender;
-
-    public ChannelMessage() {
-    }
-
-    public ChannelMessage(String message, Channel channel, Player sender) {
-        this.message = message;
-        this.channel = channel;
-        this.sender = sender;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Channel getChannel() {
-        return channel;
-    }
-
-    public void setChannel(Channel channel) {
-        this.channel = channel;
-    }
-
-    public Player getSender() {
-        return sender;
-    }
-
-    public void setSender(Player sender) {
-        this.sender = sender;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
 }

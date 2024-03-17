@@ -1,16 +1,24 @@
 package nassing.togetherwefall.entities.game;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import nassing.togetherwefall.entities.channels.Channel;
 import nassing.togetherwefall.entities.player.Player;
 
 import java.util.List;
+import java.util.UUID;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(schema = "twf", name = "server")
 public class Server {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "id")
+    private UUID id;
 
     @OneToMany(mappedBy = "server")
     private List<Channel> channels;
@@ -20,43 +28,4 @@ public class Server {
 
     @OneToOne
     private ActionQueue actionQueue;
-
-    public Server() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public List<Channel> getChannels() {
-        return channels;
-    }
-
-    public void setChannels(List<Channel> channels) {
-        this.channels = channels;
-    }
-
-    public void addChannel(Channel channel) {
-        channels.add(channel);
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void addPlayer(Player player) {
-        players.add(player);
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
-
-    public ActionQueue getActionQueue() {
-        return actionQueue;
-    }
-
-    public void setActionQueue(ActionQueue actionQueue) {
-        this.actionQueue = actionQueue;
-    }
 }

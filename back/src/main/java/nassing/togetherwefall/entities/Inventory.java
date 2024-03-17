@@ -1,22 +1,23 @@
 package nassing.togetherwefall.entities;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import nassing.togetherwefall.entities.items.AItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-import nassing.togetherwefall.entities.items.AItem;
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(schema = "twf", name = "inventory")
 public class Inventory {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private UUID id;
 
     @OneToOne
     private Survivor survivor;
@@ -26,35 +27,4 @@ public class Inventory {
 
     @OneToMany(mappedBy = "inventory")
     private List<AItem> items = new ArrayList<>();
-
-    public Inventory() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public Survivor getSurvivor() {
-        return survivor;
-    }
-
-    public void setSurvivor(Survivor survivor) {
-        this.survivor = survivor;
-    }
-
-    public Building getBuilding() {
-        return building;
-    }
-
-    public void setBuilding(Building building) {
-        this.building = building;
-    }
-
-    public List<AItem> getItems() {
-        return items;
-    }
-
-    public void addItem(AItem item) {
-        items.add(item);
-    }
 }
